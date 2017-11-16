@@ -67,66 +67,55 @@ cout << "Il PC ha vinto la sfida!" << endl;
 #include <ctime>
 using namespace std;
 
-bool pari(int sceltaPlayer, int sceltaCpuRandom);
-bool vinceIlGiocatore(int sceltaPlayer, int sceltaCpuRandom);
-bool sigioca(int puntiPC, int puntiPlayer);
+int puntiPC = 0;
+int puntiPlayer = 0;
+int sceltaPlayer;
+int sceltaCpuRandom = 0;
+
+bool pari();
+bool vinceIlGiocatore();
+bool sigioca();
 string stampaGiocata (int n);
+void risultatoParziale ();
+void risultatoFinale ();
+void player();
+void pc();
 
 int main() {
+  // inizializzo il seme di rand()
+  // su DomJudge non va inserito (perchè altrimenti non funziona il controllo)
   // srand(time(0));
-  int sceltaPlayer;
-  int sceltaCpuRandom = 0;
-  int puntiPC = 0;
-  int puntiPlayer = 0;
 
-  while (sigioca(puntiPC, puntiPlayer)) {
+  while (sigioca()) {
+    // prendo la giocata e verifico che sia corretta
+    player();
 
-    do {
-      cout << "Inserisci la giocata del primo giocatore (1: sasso, 2: carta, 3: forbice):";
-      cin >> sceltaPlayer;
-    } while (sceltaPlayer < 1 || sceltaPlayer > 3);
+    // faccio giocare il pc random
+    pc();
 
-    cout << "hai giocato " << stampaGiocata(sceltaPlayer) << endl;
-
-    sceltaCpuRandom = rand() % 3 + 1;
-
-    cout << "il PC ha giocato " << stampaGiocata(sceltaCpuRandom) << endl;
-
-    if (pari(sceltaPlayer, sceltaCpuRandom)) {
-      cout << "Pari:";
-    } else if (vinceIlGiocatore(sceltaPlayer, sceltaCpuRandom)) {
-      cout << "Vinci tu:" << endl;
-      puntiPlayer++;
-    } else {
-      cout << "Vince il PC:" << endl;
-      puntiPC++;
-    }
-
-    cout << puntiPlayer << "-" << puntiPC << endl;
+    // stampo il risultato parziale
+    risultatoParziale();
   }
 
-  if (puntiPC < puntiPlayer) {
-    cout << "Hai vinto la sfida!" << endl;
-  } else {
-    cout << "Il PC ha vinto la sfida!" << endl;
-  }
+  // stampo il risultato finale
+  risultatoFinale();
 
   return 0;
 }
 
-bool pari(int sceltaPlayer, int sceltaCpuRandom) {
+bool pari() {
   if (sceltaPlayer == sceltaCpuRandom) {
     return true;
   }
   return false;
 }
-bool vinceIlGiocatore(int sceltaPlayer, int sceltaCpuRandom) {
+bool vinceIlGiocatore() {
   if ((sceltaPlayer == 1 && sceltaCpuRandom == 3) || (sceltaPlayer == 2 && sceltaCpuRandom == 1) || (sceltaPlayer == 3 && sceltaCpuRandom == 2)) {
     return true;
   }
   return false;
 }
-bool sigioca(int puntiPC, int puntiPlayer) {
+bool sigioca() {
   if (puntiPC < 3 && puntiPlayer < 3) {
     return true;
   }
@@ -146,4 +135,34 @@ string stampaGiocata (int n) {
       break;
   }
   return result;
+}
+void risultatoParziale () {
+  if (pari()) {
+    cout << "Pari:";
+  } else if (vinceIlGiocatore()) {
+    cout << "Vinci tu:" << endl;
+    puntiPlayer++;
+  } else {
+    cout << "Vince il PC:" << endl;
+    puntiPC++;
+  }
+  cout << puntiPlayer << "-" << puntiPC << endl;
+}
+void risultatoFinale () {
+  if (puntiPC < puntiPlayer) {
+    cout << "Hai vinto la sfida!" << endl;
+  } else {
+    cout << "Il PC ha vinto la sfida!" << endl;
+  }
+}
+void player() {
+  do {
+    cout << "Inserisci la giocata del primo giocatore (1: sasso, 2: carta, 3: forbice):";
+    cin >> sceltaPlayer;
+  } while (sceltaPlayer < 1 || sceltaPlayer > 3);
+  cout << "hai giocato " << stampaGiocata(sceltaPlayer) << endl;
+}
+void pc() {
+  sceltaCpuRandom = rand() % 3 + 1;
+  cout << "il PC ha giocato " << stampaGiocata(sceltaCpuRandom) << endl;
 }
