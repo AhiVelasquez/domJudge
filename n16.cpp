@@ -14,8 +14,9 @@ almeno 3 (quattro, in questo caso).
 using namespace std;
 
 int main() {
-  int n, zeri = 0;
+  int x, n, zeri = 0;
   bool xNum = false;
+  cin >> x;
 
   cin >> n;
 
@@ -25,11 +26,9 @@ int main() {
     } else {
       zeri = 0;
     }
-
-    if (zeri == 3) {
+    if (zeri >= x && x != 0) {
       xNum = true;
     }
-
     cin >> n;
   }
 
