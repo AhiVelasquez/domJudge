@@ -33,8 +33,10 @@ int main() {
     return 0;
   }
 
-  attuale = inizio + 96 + 128;
-  fine = fine + 96 + 128;
+  // grazie matte' XD
+  attuale = inizio - 32;
+  fine = fine - 32;
+  
   while (attuale <= fine) {
     cout << (char)attuale;
     attuale++;
