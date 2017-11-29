@@ -26,6 +26,13 @@ int main() {
     } else {
       zeri = 0;
     }
+    // prima versione... [WRONG]
+    // if (zeri >= x) {
+
+    // domjudge buggato?! [CORRECT]
+    // if (zeri >= 3) {
+
+    // ultima versione... [CORRECT]
     if (zeri >= x && x != 0) {
       xNum = true;
     }
