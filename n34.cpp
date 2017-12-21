@@ -43,16 +43,12 @@ int main() {
   }
 
   for (int i = 0; i < n; i++) {
-    if( (i == 0 && sequenza[i] % 2 != 0) || (i != 0 && i%2==0 && sequenza[i] <= sequenza[i-2]) || (i%2 != 0 && sequenza[i] % 2 == 0)) {
+    if( (i == 0 && sequenza[i] >= sequenza[i+2]) || ( i != 0 && i%2==0 && sequenza[i] <= sequenza[i-2]) || (i%2 != 0 && sequenza[i] % 2 == 0)) {
       check = false;
     }
   }
 
-  if (check) {
-    cout << "SI";
-  } else {
-    cout << "NO";
-  }
+  cout << (check? "SI" : "NO");
 
   return 0;
 }
