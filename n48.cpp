@@ -42,8 +42,9 @@ void leggo(int n[], int& dim) {
 }
 
 void seqCrescente(int seq[], int dim, int& indiceMax, int& lmax) {
-   int tab[100][2] = {1};
+   int tab[100][2] = {1}; // array x * 2 con gli indici e le lunghezze delle sequenze crescenti
    int index = 0, lung = 0, j = 0;
+   // trovo tutte le sequenza crescenti
    for (int i = 1; i < dim; i++) {
       if (seq[i] >= seq[i-1]) {
          tab[j][0]++;
@@ -52,7 +53,7 @@ void seqCrescente(int seq[], int dim, int& indiceMax, int& lmax) {
          tab[j][0] = 1;
       }
    }
-
+   // tra le sequenze crescenti trovo la sequenza più lunga
    lmax = tab[0][0];
    indiceMax = 0;
    for(int i = 1; i <= j; i++) {
