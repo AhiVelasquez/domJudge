@@ -1,26 +1,9 @@
 /*
-IN:
-   una frase F    (max 100 caratteri)
-   una parola P   (max 100 caratteri)
-OUT:
-   Prima parola da sx, diversa da P, con uguali occorrenze di P in F.
-   Se non esiste stampa FALSO.
-
-NOTE:
-Le parole in F sono separate soltanto da spazi.
-
----
-oggi fuori piove oggi domani piove fuori fuori domani
-oggi
-
-piove
----
-oggi mi sento solo troppo solo
-solo
-
-FALSO
+NOTA!!!
+Va fatto prendendo la key con cin semplice e non getline() perchè c'è un
+TestCase stronzo con la key di due parole di cui va semplicemente ignorata la
+seconda!
 */
-
 #include <iostream>
 #include <cstring>
 using namespace std;

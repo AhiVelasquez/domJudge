@@ -1,31 +1,5 @@
 /*
-TODO:
-
-ciao
-5
-ciaociao
-ciaoooo
-cicciociao
-ciaociaociao
-ciaociaociaooo
-
-ciaociaociao
----
-mm
-3
-mamma
-mimmo
-mmmadb
-
-mmmadb
----
-ciao
-3
-goodbye
-arrivederci
-sayonara
-
-goodbye
+NOTA! Va fatto usando array di char e non oggetti stringa. Perchè? Sto cercando di capire...
 */
 #include <iostream>
 #include <cstring>
