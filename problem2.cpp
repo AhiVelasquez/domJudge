@@ -1,4 +1,6 @@
 /*
+TODO:
+
 ciao
 5
 ciaociao
@@ -26,36 +28,46 @@ sayonara
 goodbye
 */
 #include <iostream>
-#include <string>
+#include <cstring>
 using namespace std;
-const int LIMITE = 200;
+const int LIMITE = 100;
 
 int main() {
    // Prendo i dati da input
    // key, numero stringhe, stringhe
-   string key;
-   getline(cin, key);
+   char key[LIMITE];
+   cin >> key;
 
    unsigned n;
    cin >> n;
-   cin.ignore();
 
-   string lista[LIMITE];
+   char lista[LIMITE][21];
+
    for(unsigned i = 0; i < n; i++) {
-      getline(cin, lista[i]);
+      cin >> lista[i];
    }
-
 
    // Salvo il numero delle occorrenze della key in ogni stringa
    int occ[LIMITE] = {0};
    for (unsigned i = 0; i < n; i++) {
-      for(unsigned j = 0; j <= lista[i].length() - key.length(); j++) {
-         cout << lista[i].substr(j, key.length()) << endl;
+      for(unsigned j = 0; j < strlen(lista[i]); j++) {
+         char tmp[LIMITE];
+         for (unsigned k = 0; k < strlen(key); k++) {
+            tmp[k] = lista[i][j+k];
+         }
+
+         tmp[strlen(key)] = '\0';
+
+         if(strcmp(tmp, key) == 0) {
+            // cout << tmp << endl;
+            occ[i]++;
+         }
+         /*
          if (lista[i].substr(j, key.length()) == key) {
             occ[i]++;
          }
+         */
       }
-      cout << endl;
    }
 
    // Stampo la lista delle occorrenze per ogni stringa

@@ -24,7 +24,7 @@ FALSO
 #include <iostream>
 #include <cstring>
 using namespace std;
-const int MAX = 100;
+const int MAX = 101;
 
 int split(char [], char *[], int []);
 int inElenco(char *[], char *, int);
@@ -32,10 +32,11 @@ int find(char *elenco[], char *key, int qta, int ripetizioni[], int ripKey);
 
 int main() {
    char frase[MAX];
-   cin.getline(frase, MAX+1);
+   cin.getline(frase, MAX);
 
    char key[MAX];
-   cin.getline(key, MAX+1);
+   // cin.getline(key, MAX); 7 WRONG!!! Ci sono test case dove key è più di due parole!!!
+   cin >> key;
 
    char *elenco[MAX];
    int ripetizioni[MAX] = {0};
@@ -49,8 +50,9 @@ int main() {
    } else {
       cout << "FALSO";
    }
-}
 
+   return 0; // MANCAVA!
+}
 int split(char frase[], char *elenco[], int ripetizioni[]) {
    char *tmp = strtok(frase, " ");
    int posTmp = -1;
