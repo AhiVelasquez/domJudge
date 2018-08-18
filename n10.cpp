@@ -10,8 +10,8 @@ Esempi:
   11111111 ---> 0 (Ninv = 11111111)
 */
 
-#include <iostream>
 #include <math.h>
+#include <iostream>
 using namespace std;
 
 int main() {
@@ -19,7 +19,8 @@ int main() {
   cin >> num;
 
   for (int i = int(log10(num) + 1); i >= 1; i--) {
-    numInverso += (num % int(pow(10, i)) / int(pow(10, i - 1))) * int(pow(10, int(log10(num) + 1) - i));
+    numInverso += (num % int(pow(10, i)) / int(pow(10, i - 1))) *
+                  int(pow(10, int(log10(num) + 1) - i));
   }
 
   cout << num - numInverso;
