@@ -1,43 +1,5 @@
 /*
-RUN ERROR???
-WHy????
 
-d  arr            m  n
-5  2 7 2 4 5      1
-
-
-
-10
-0 1 0 2 0 3 0 4 0 5
-8
-2
-
-10
-0 1 0 2 0 3 0 4 0 5
-10
-10
-
-10
-1 1 1 2 1 3 1 4 1 5
-10
-10
-
-10
-0 0 0 0 0 0 0 0 0 0
-10
-10
-
-
-5
-1 2 3 4 5
-10
-10
-
-
-10
-0 0 0 0 1 0 0 0 0 1
-10
-10
 */
 
 #include <iostream>
@@ -63,32 +25,42 @@ int main() {
       matrix[i] = new int[colonne]();
    }
 
-   int dimMinima = (righe >= colonne ? colonne : righe);
+   int dimMinima = (righe > colonne ? colonne : righe);
 
    // riempio a spirare usando seq[] in sequenza crescente
    int k = 0;
-   for (int i = 0; i < (dimMinima / 2); i++) {
+   int celle=0;
+   for (int i = 0; i <= (dimMinima / 2); i++) {
+
       // riga superiore, da sx a dx
-      for (int j = i; j < colonne-i; j++) {
+      for (int j = i; j < colonne-i-1; j++) {
+         if(celle>=righe*colonne) break;
          if (k >= dimSeq) k = 0;
          matrix[i][j] = seq[k++];
+         celle++;
       }
       // colonna più a dx, dall'alto verso il basso
-      for (int j = i+1; j < righe-i; j++) {
+      for (int j = i; j < righe-i-1; j++) {
+         if(celle>=righe*colonne) break;
          if (k >= dimSeq) k = 0;
          matrix[j][colonne-1-i] = seq[k++];
+         celle++;
       }
       // riga inferiore, da dx a sx
-      for (int j = colonne-1-i-1; j >= i; j--) {
+      for (int j = colonne-1-i; j > i; j--) {
+         if(celle>=righe*colonne) break;
          if (k >= dimSeq) k = 0;
          matrix[righe-1-i][j] = seq[k++];
+         celle++;
       }
       // colonna più a sx, dal basso verso l'alto
-      for (int j = righe-1-i-1; j > i; j--) {
+      for (int j = righe-1-i; j > i; j--) {
+         if(celle>=righe*colonne) break;
          if (k >= dimSeq) k = 0;
          matrix[j][i] = seq[k++];
+         celle++;
       }
-
+      if(celle>=righe*colonne) break;
    }
 
    // stampo la matrice
